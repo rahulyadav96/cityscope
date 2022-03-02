@@ -33,17 +33,8 @@ export const Signup = () => {
            
     }
     return <>
-        <h2>Sign UP</h2>
+        <h2 style={{textAlign:"center"}}>Sign UP</h2>
         <Form onSubmit={handleSubmit}>
-            <div style={{marginBottom:"20px"}}>
-                Select your role : <select name="role" onChange={handleChange}>
-                    <option value="select">Select</option>
-                    <option value="admin">Admin</option>
-                    <option value="customer">Customer</option>
-                    <option value="moderator">Moderator</option>
-                </select>
-
-            </div>
             <input type="text" name="fullName" placeholder="Name" onChange={handleChange} required />
             <input type="email" name="email" placeholder="Email" onChange={handleChange} required/>
             <input type="password" name="password" placeholder="Password" onChange={handleChange} required/>

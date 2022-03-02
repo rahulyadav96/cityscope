@@ -1,9 +1,13 @@
 import './App.css';
-import {useState,useEffect} from "react"
-import axios from "axios"
+import {useState,useEffect, useContext} from "react"
+import { Switch, Route, Redirect } from 'react-router-dom';
 import {Home} from "./components/Home";
+import { Login } from './components/Login';
+import { Signup } from './components/Signup';
+import { AuthContext } from './context/AuthContext';
 function App() {
   const [data,setdata] = useState("");
+  const {auth} = useContext(AuthContext);
   // useEffect(()=>{
   //   axios.get('/api')
   //   .then(res=>{
@@ -12,7 +16,20 @@ function App() {
   // },[])
   return (
     <div className="App">
-      <Home />
+    <Switch>
+      <Route exact path="/">
+        <Home/>
+      </Route>
+      <Route path="/sign-up">
+        <Signup />
+      </Route>
+      <Route path="/login">
+        {
+          auth?<Redirect to="/"/>:
+        <Login />
+        }
+      </Route>
+    </Switch>
   
     </div>
   );

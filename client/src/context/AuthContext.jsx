@@ -17,7 +17,7 @@ export const AuthContextProvider = ({children})=>{
         setAuth(false);
         setUser({})
     }
-    return <AuthContext.Provider value={{auth, handleAuth, handleLogOut}}>
+    return <AuthContext.Provider value={{auth, handleAuth, handleLogOut, user}}>
         {children}
     </AuthContext.Provider>
 

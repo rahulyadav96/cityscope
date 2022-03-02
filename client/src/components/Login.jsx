@@ -20,7 +20,7 @@ export const Login = ()=>{
         e.preventDefault();
         if(details.password.length>=8){
 
-            axios.post('/login',details)
+            axios.post('/signin',details)
             .then(res=>{
                 console.log(res.data);
                 handleAuth(res.data)
@@ -32,7 +32,7 @@ export const Login = ()=>{
     }
 
     return <>
-    <h2>Login</h2>
+    <h2 style={{textAlign:"center"}}>Login</h2>
         <Form onSubmit={handleSubmit}>
         <input type="email" name="email" placeholder="Email" onChange={handleChange} required/>
         <input type="password" name="password" placeholder="Password" onChange={handleChange} required/>
