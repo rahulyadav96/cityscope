@@ -1,7 +1,7 @@
-import { Box, Button, Card, CardContent, Container, Grid, Typography } from "@mui/material"
+import { Box, Button, Card, CardContent, Container, Grid, Input, MenuItem, Select, TextareaAutosize, Typography } from "@mui/material"
 import { Appbar } from "./Appbar";
 import { Link } from 'react-router-dom';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -10,6 +10,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import TextField from '@mui/material/TextField';
+
+import { AuthContext } from "../context/AuthContext";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -50,8 +53,29 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export const Dashboard = () => {
+    const { user } = useContext(AuthContext);
+
     const [open, setOpen] = useState(false);
+    const [articleData, setArticleData] = useState({
+        author: user.user.fullName,
+        img: "",
+        title: "",
+        short_Summary: "",
+        content_Categary: "",
+        city: "",
+        time_to_read: ""
+    })
+
     const handleOpen = () => {
+        setOpen(!open);
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setArticleData({ ...articleData, [name]: value })
+    }
+    const handleSubmit = (e) => {
+        console.log(articleData);
         setOpen(!open);
     }
 
@@ -75,16 +99,72 @@ export const Dashboard = () => {
                     </BootstrapDialogTitle>
                     <DialogContent dividers>
                         <Box>
-                            <Typography variant="h2">
-                                Rahul
-                            </Typography>
+                            <form style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+
+                                <Box style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "12px" }} required>
+                                    <label>Image</label>
+                                    <input type="file" name="img" onChange={handleChange} required />
+                                </Box>
+                                <Box style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "12px" }} required>
+                                    <label>Title</label>
+                                    <TextField
+                                        type="text"
+                                        name="title"
+                                        placeholder="Content Title"
+                                        value={articleData.title}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </Box>
+                                <Box style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "12px" }} required>
+                                    <label>Short Summary</label>
+                                    <TextareaAutosize
+                                        type="text"
+                                        name="short_Summary"
+                                        style={{ width: "inherit", padding: "15px", resize: "none" }}
+                                        minRows={4}
+                                        aria-label="maximum height"
+                                        placeholder="Message"
+                                        value={articleData.short_Summary}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </Box>
+                                <Box style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "12px" }} required>
+                                    <label>Content Category</label>
+                                    <Select name="content_Categary" value={articleData.content_Categary} onChange={handleChange} required>
+                                        <MenuItem value="Delhi">Delhi</MenuItem>
+                                        <MenuItem value="tech">Technology</MenuItem>
+                                        <MenuItem value="health">Health And Education</MenuItem>
+                                        <MenuItem value="lifestyle">LifeStyle</MenuItem>
+                                    </Select>
+                                </Box>
+                                <Box style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "12px" }} required>
+                                    <label>City</label>
+                                    <Select name="city" value={articleData.city} onChange={handleChange} required>
+                                        <MenuItem value="Delhi">Delhi</MenuItem>
+                                        <MenuItem value="Mumbai">Mumbai</MenuItem>
+                                        <MenuItem value="Banglore">Banglore</MenuItem>
+                                        <MenuItem value="Lucknow">Lucknow</MenuItem>
+                                    </Select>
+                                </Box>
+                                <Box name="time_to_read" style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "12px" }} required>
+                                    <label>Time to read</label>
+                                    <TextField type="text"
+                                        name="time_to_read"
+                                        value={articleData.time_to_read}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </Box>
+
+
+                                <input type="submit" variant="contained" autoFocus onSubmit={handleSubmit} value="Submit" />
+                            </form>
                         </Box>
-                       
+
                     </DialogContent>
                     <DialogActions>
-                        <Button autoFocus onClick={handleOpen}>
-                            Save changes
-                        </Button>
                     </DialogActions>
                 </BootstrapDialog>
             </Box>
