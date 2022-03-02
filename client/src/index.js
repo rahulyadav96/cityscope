@@ -5,13 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext";
-import {ArticleContextProvider} from "./context/ArcticleContext"
+import {ArticleContextProvider} from "./context/ArcticleContext";
+import { StyledEngineProvider } from '@mui/material/styles';
 ReactDOM.render(
   <React.StrictMode>
+
     <BrowserRouter>
       <AuthContextProvider>
         <ArticleContextProvider>
+        <StyledEngineProvider injectFirst>
           <App />
+          </StyledEngineProvider>
         </ArticleContextProvider>
       </AuthContextProvider>
     </BrowserRouter>

@@ -5,6 +5,8 @@ import {Home} from "./components/Home";
 import { Login } from './components/Login';
 import { Signup } from './components/Signup';
 import { AuthContext } from './context/AuthContext';
+import {Dashboard} from "./components/Dashboard";
+import {Errorpage} from "./components/Errorpage"
 function App() {
   const [data,setdata] = useState("");
   const {auth} = useContext(AuthContext);
@@ -20,6 +22,11 @@ function App() {
       <Route exact path="/">
         <Home/>
       </Route>
+      <Route path="/dashboard">
+        {
+          !auth?<Dashboard />:<Redirect to="/"/>
+        }
+      </Route>
       <Route path="/sign-up">
         <Signup />
       </Route>
@@ -28,6 +35,9 @@ function App() {
           auth?<Redirect to="/"/>:
         <Login />
         }
+      </Route>
+      <Route>
+        <Errorpage />
       </Route>
     </Switch>
   

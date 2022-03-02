@@ -10,8 +10,8 @@ export const AuthContextProvider = ({children})=>{
         user:{}
     })
     const handleAuth = (data)=>{
-        setAuth(true);
         setUser(data)
+        setAuth(true);
     }
     const handleLogOut = ()=>{
         setAuth(false);

@@ -17,6 +17,7 @@ export const Home = () => {
                     {
                         auth?<Box >
                             <Typography variant="span">{user.user.fullName}</Typography>
+                            <Link to="/dashboard" style={{textDecoration:"none"}}> <Button variant="text">Dashboard</Button> </Link>
                             <Button onClick={handleLogOut}>Log Out</Button>
                             </Box>:<Box>
                                 <Link to="/sign-up" style={{textDecoration:"none"}}> <Button variant="text"> Sign Up </Button> </Link>
