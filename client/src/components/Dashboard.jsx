@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import TextField from '@mui/material/TextField';
 
 import { AuthContext } from "../context/AuthContext";
-
+import axios from "axios";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -75,8 +75,18 @@ export const Dashboard = () => {
         setArticleData({ ...articleData, [name]: value })
     }
     const handleSubmit = (e) => {
-        console.log(articleData);
-        setOpen(!open);
+        e.preventDefault();
+        axios.post('/articles',articleData,{
+            headers: {
+              'encType': 'multipart/form-data'
+            }
+        })
+        .then(res=>{
+            alert("article added")
+            setOpen(!open);
+        })
+        .catch(err=>console.log(err))
+        //console.log(articleData);
     }
 
     return (
@@ -99,7 +109,7 @@ export const Dashboard = () => {
                     </BootstrapDialogTitle>
                     <DialogContent dividers>
                         <Box>
-                            <form style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                            <form style={{ display: "flex", flexDirection: "column", gap: "15px" }} onSubmit={handleSubmit} >
 
                                 <Box style={{ display: "flex", flexDirection: "column", gap: "8px", fontSize: "12px" }} required>
                                     <label>Image</label>
@@ -159,7 +169,7 @@ export const Dashboard = () => {
                                 </Box>
 
 
-                                <input type="submit" variant="contained" autoFocus onSubmit={handleSubmit} value="Submit" />
+                                <input type="submit" value="Submit" />
                             </form>
                         </Box>
 

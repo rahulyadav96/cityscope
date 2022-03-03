@@ -24,7 +24,7 @@ function App() {
       </Route>
       <Route path="/dashboard">
         {
-          !auth?<Dashboard />:<Redirect to="/"/>
+          auth?<Dashboard />:<Redirect to="/"/>
         }
       </Route>
       <Route path="/sign-up">
