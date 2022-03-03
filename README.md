@@ -1,5 +1,5 @@
 # cityscope
-This is blog websites
+This is full stack website for bloggers 
 
 ### fitures
 1. show all stories
