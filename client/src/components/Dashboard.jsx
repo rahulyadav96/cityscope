@@ -78,7 +78,7 @@ export const Dashboard = () => {
         e.preventDefault();
         axios.post('/articles',articleData,{
             headers: {
-              'encType': 'multipart/form-data'
+              'Content-Type': 'multipart/form-data'
             }
         })
         .then(res=>{
