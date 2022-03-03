@@ -5,8 +5,10 @@ import { Navbar } from "./Navbar";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { ShowArticle } from "./ShowArticle";
 export const Home = () => {
-    const {auth,user,handleLogOut} = useContext(AuthContext)
+    const {auth,user,handleLogOut} = useContext(AuthContext);
+
     return (
         <Box>
             <Appbar>
@@ -26,7 +28,10 @@ export const Home = () => {
                     }
                 </Box>
             </Appbar>
+            <br />
             <Navbar />
+            <br />
+            <ShowArticle />
         </Box>
     )
 } 
