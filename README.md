@@ -12,7 +12,7 @@ This is full stack website for bloggers
 1) Node.js
 2) Express.js
 3) Mongoose
-4) MongoAltash
+4) Mongoatlas
 5) React
 6) Material UI
 7) Multer
