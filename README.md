@@ -2,20 +2,20 @@
 This is full stack website for bloggers 
 
 ### fitures
-1. show all stories
-2 .signup
-3.login
-4.filter according categary
-5.Add new Article
+1) show all stories
+2) signup
+3) login
+4) filter according categary
+5) Add new Article
 
 ### Tech Stack
-1.Node.js
-2.Express.js
-3.Mongoose
-4.MongoAltash
-5.React
-6.Material UI
-7.Multer
+1) Node.js
+2) Express.js
+3) Mongoose
+4) MongoAltash
+5) React
+6) Material UI
+7) Multer
 
 # How To run
 
